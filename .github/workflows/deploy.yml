@@ -23,7 +23,7 @@ jobs:
           protocol: ftp
           port: 21
           local-dir: ./
-          server-dir: /time.siavashzarif.ir/htdocs/
+          server-dir: /
           exclude: |
             **/.git*
             **/.git*/**
