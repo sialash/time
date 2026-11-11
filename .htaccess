@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # جلوگیری از دسترسی مستقیم به فایل‌های حساس مثل .env
+    <Files ~ "^\.">
+        <IfModule !mod_authz_core.c>
+            Order allow,deny
+            Deny from all
+        </IfModule>
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+    </Files>
+
+    # ریدایرکت داخلی تمام ترافیک به پوشه public بدون تغییر ظاهر URL
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
